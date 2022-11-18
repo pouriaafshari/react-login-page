@@ -1,0 +1,40 @@
+#login-content
+{
+    width: 90vw;
+    height: 85vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: pink;
+}
+
+#right-part
+{
+    width: 50%;
+    height: 100%;
+    background-color: rgb(228, 248, 255);
+    float: right;
+    position: relative;
+}
+
+#left-part
+{
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    float: left;
+    position: relative;
+}
+#left-part #input-part
+{
+    width: 70%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: lightseagreen;
+}
