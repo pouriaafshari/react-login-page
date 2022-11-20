@@ -12,6 +12,11 @@ import elem5 from './images/elem5.png';
 import show from './images/show.png';
 import hide from './images/hide.png';
 
+var validEmail = false;
+var validPW = false;
+var submitEmail = "";
+var submitPword = "";
+
 function Login() 
 {
   const [emailError, setEmailError] = useState('');
@@ -26,12 +31,15 @@ function Login()
       setEmailError('');
       setemailTitleClass('input-title');
       setemailInputClass('input');
+      submitEmail = email;
+      validEmail = true;
     } 
     else 
     {
       setEmailError('* Enter valid Email !');
       setemailTitleClass('input-title title-error');
       setemailInputClass('input input-error');
+      validEmail = false;
     }
 
     
@@ -42,8 +50,11 @@ function Login()
         setEmailError('* Enter valid characters only ! ');
         setemailTitleClass('input-title title-error');
         setemailInputClass('input input-error');
+        validEmail=false;
       }
     }
+
+    CheckLoginButton();
   }
 
   const [pwordError, setPwordError] = useState('');
@@ -110,7 +121,16 @@ function Login()
       setPwordError('');
       setpwordTitleClass('input-title');
       setpwordInputClass('input');
+      
+      submitPword = pw;
+      validPW = true;
     }
+    else
+    {
+      validPW = false;
+    }
+    
+    CheckLoginButton();
   }
 
   const [Show, setShow] = useState(false);
@@ -119,60 +139,76 @@ function Login()
     setShow(!Show);
   }
 
-  const SubmitData = (usrEmail, usrPword, usrRemember) => 
+  const CheckLoginButton = () =>
   {
-    localStorage.setItem("Email", usrEmail);
-    localStorage.setItem("Pword", usrPword);
-    localStorage.setItem("Remember", usrRemember);
+    if (validPW && validEmail)
+    {
+      document.getElementById('login-button').disabled=false;
+      document.getElementById('login-button').onclick = () => {SubmitData(); window.location = "/view";}
+    }
+    else
+    {
+      document.getElementById('login-button').disabled=true;
+    }
+  }
+
+  const SubmitData = () => 
+  {
+    localStorage.setItem("Email", submitEmail);
+    localStorage.setItem("Pword", submitPword);
+    localStorage.setItem("Remember", document.getElementById('rememberme').checked);
   }
 
 
   return (
-    <div id='login-content'>
-      <div id='left-part'>
-        <div id='input-part'>
-          <img src={logo} alt='syncee logo' id='logo'/>
-          <div id='title'>Login</div>
-          <button id='google-button'><img src={googlelogo} />Sign in with Google</button>
-          <div id='or'><span>or sign in with Email</span></div>
-          <div>
+    <>
+      <div id='bg'></div>
+      <div id='login-content'>
+        <div id='left-part'>
+          <div id='input-part'>
+            <img onClick={() => {window.location.href="https://syncee.co/"}} src={logo} alt='syncee logo' id='logo'/>
+            <div id='title'>Login</div>
+            <button id='google-button' onClick={() => {window.location.href="https://www.google.com/account/about/?hl=en-US"}}><img src={googlelogo} />Sign in with Google</button>
+            <div id='or'><span>or sign in with Email</span></div>
+            <div>
 
-            <div className={ emailtitleClass } >Email*</div>
-            <input className={ emailinputClass } onChange={(e) => validateEmail(e)} />
-            <span className='error-text'>{emailError}</span>
-          
-          </div>
-          <div>
+              <div className={ emailtitleClass } >Email*</div>
+              <input placeholder='mail@website.com' className={ emailinputClass } onChange={(e) => validateEmail(e)} />
+              <span className='error-text'>{emailError}</span>
+            
+            </div>
+            <div>
 
-            <div className={ pwordtitleClass }>Password*</div>
-            <input type={Show ? 'text' : 'password'} className={ pwordinputClass } onChange={(e) => validatePword(e)} />
-            {Show ? (
-              <img onClick={ShowHide} src={ hide } id='show-pword' />
-            ) : (
-              <img onClick={ShowHide} src={ show } id='show-pword' />
-            )}
-            <span className='error-text'>{pwordError}</span>
+              <div className={ pwordtitleClass }>Password*</div>
+              <input placeholder='Min. 5 character' type={Show ? 'text' : 'password'} className={ pwordinputClass } onChange={(e) => validatePword(e)} />
+              {Show ? (
+                <img onClick={ShowHide} src={ hide } id='show-pword' />
+              ) : (
+                <img onClick={ShowHide} src={ show } id='show-pword' />
+              )}
+              <span className='error-text'>{pwordError}</span>
 
+            </div>
+            <div id='pword-options'>
+              <input type={'checkbox'} name='rememberme' id='rememberme'/>
+              <a href='' id='forgot-pword'>Forget password?</a>
+            </div>
+            <button id='login-button' disabled={true}>Login</button>
+            <br/>
+            <span id='not-registered'>Not registered yet?<a href=''>create an account</a></span>
           </div>
-          <div id='pword-options'>
-            <input type={'checkbox'} name='rememberme' id='rememberme'/>
-            <a href='' id='forgot-pword'>forgot my password</a>
-          </div>
-          <button id='login-button'>Login</button>
-          <br/>
-          <span id='not-registered'>Not registered yet?<a href=''>create an account</a></span>
+        </div>
+        <link to={{pathname:"./"}} />
+
+        <div id='right-part'>
+          <img src={elem5} alt='speakers' className='right-part-image' id='elem5'/>
+          <img src={elem4} alt='speakers' className='right-part-image' id='elem4'/>
+          <img src={elem3} alt='speakers' className='right-part-image' id='elem3'/>
+          <img src={elem2} alt='speakers' className='right-part-image' id='elem2'/>
+          <img src={elem1} alt='speakers' className='right-part-image' id='elem1'/>
         </div>
       </div>
-
-
-      <div id='right-part'>
-        <img src={elem5} alt='speakers' className='right-part-image' id='elem5'/>
-        <img src={elem4} alt='speakers' className='right-part-image' id='elem4'/>
-        <img src={elem3} alt='speakers' className='right-part-image' id='elem3'/>
-        <img src={elem2} alt='speakers' className='right-part-image' id='elem2'/>
-        <img src={elem1} alt='speakers' className='right-part-image' id='elem1'/>
-      </div>
-    </div>
+    </>
   );
 }
 

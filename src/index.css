@@ -1,7 +1,7 @@
 body {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow-x: hidden;
   background-color: rgb(206, 215, 255);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,25 +16,4 @@ code {
     monospace;
 }
 
-#bg {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: 300% 300%;
-  background-image: linear-gradient(
-        -45deg, 
-        rgb(254, 233, 255) 0%,
-        rgb(228, 154, 255) 25%, 
-        rgb(198, 207, 255) 51%, 
-        rgb(254, 254, 255) 100%
-  );  
-  animation: AnimateBG 8s ease infinite;
-}
 
-@keyframes AnimateBG { 
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}

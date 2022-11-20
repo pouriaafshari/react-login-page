@@ -1,11 +1,37 @@
+#bg {
+    z-index: -5!important;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 300% 300%;
+    background-image: linear-gradient(
+          -45deg, 
+          rgb(254, 233, 255) 0%,
+          rgb(228, 154, 255) 25%, 
+          rgb(198, 207, 255) 51%, 
+          rgb(254, 254, 255) 100%
+    );  
+    animation: AnimateBG 8s ease infinite;
+  }
+  
+  @keyframes AnimateBG { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+
 #login-content
 {
-    width: 90vw;
-    height: 85vh;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 3vw;
+    right: 3vw;
+    top: 5vh;
+    bottom: 5vh;
+    display: flex;
+    margin: auto;
 }
 
 #right-part
@@ -92,29 +118,30 @@
 }
 #left-part #input-part
 {
-    width: 55%;
-    height: 90%;
-    position: absolute;
+    width: 30vw;
+    position: relative;
+    display: block;
+    margin: auto;
+    margin-top: 5vh;
     text-align: left;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background-color: white;
 }
 #left-part #logo
 {
     width: 5em;
+    cursor: pointer;
 }
 #left-part #title
 {
     font-size: 1.6em;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 3vh;
 }
 #left-part #title::after
 {
     content: "See your growth and get consulting support!";
     display: block;
-    margin-top: 5px;
+    margin-top: 1vh;
     font-size: small;
     opacity: 0.6;
 }
@@ -122,22 +149,23 @@
 {
     cursor: pointer;
     position: relative;
-    margin-top: 30px;
+    margin-top: 5vh;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    height: 35px;
+    height: 6vh;
     background-color: white;
     border-radius: 35px;
     border: 1px rgb(218, 218, 218) solid;
-    line-height: 35px;
+    line-height: 5vh;
+    font-weight: bold;
 }
 #left-part #google-button img
 {
-    height: 15px;
+    width: 2.4vh;
     display: inline-block;
-    transform: translateY(2px);
-    margin-right: 8px;
+    transform: translateY(.5vh);
+    margin-right: 2vh;
 }
 #left-part #or
 {
@@ -168,11 +196,11 @@
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
-    height: 35px;
-    border-radius: 25px;
+    height: 6vh;
+    border-radius: 6vh;
     border: none;
     padding: 0 5% 0 5%;
-    margin: 5px 0 15px 0;
+    margin: 1vh 0 1.5vh 0;
     border: 1px rgb(218, 218, 218) solid;
 }
 #left-part .input:focus
@@ -200,10 +228,10 @@
 #left-part #show-pword
 {
     cursor: pointer;
-    width: 20px;
+    width: 3vh;
     position: absolute;
-    right: 12px;
-    transform: translateY(-43px);
+    right: 14px;
+    transform: translateY(-6vh);
     opacity: 0.3;
 }
 #left-part #pword-options
@@ -242,17 +270,23 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    height: 35px;
+    height: 6vh;
     background-color: rgb(30, 79, 205);
     color: white;
-    border-radius: 35px;
+    border-radius: 6vh;
     border: none;
+}
+#left-part #login-button:disabled
+{
+    cursor:not-allowed;
+    background-color: rgb(150, 150, 150);
+    opacity: 0.5;
 }
 #left-part #not-registered
 {
     font-size: small;
     display: block;
-    margin-top: 18px;
+    margin-top: 2.5vh;
 }
 #left-part #not-registered a
 {
@@ -276,6 +310,10 @@
     {
         width: 100%;
     }
+    #left-part #input-part
+    {
+        width: 50vw;
+    }
 }
 
 @media only screen and (max-width: 450px) 
@@ -285,6 +323,10 @@
       display: none;
     }
 
+    #left-part #input-part
+    {
+        width: 70vw;
+    }
     #left-part #pword-options
     {
         margin-bottom: 18px;
