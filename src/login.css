@@ -6,8 +6,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    background-color: pink;
 }
 
 #right-part
@@ -176,6 +174,37 @@
     padding: 0 5% 0 5%;
     margin: 5px 0 15px 0;
     border: 1px rgb(218, 218, 218) solid;
+}
+#left-part .input:focus
+{
+    outline: none;
+}
+#left-part .title-error
+{
+    color: red;
+}
+#left-part .input-error
+{
+    background-color: rgb(255, 237, 237);
+}
+#left-part .error-text
+{
+    font-size: 0.8em;
+    color: red;
+    position: relative;
+    display: block;
+    opacity: 0.8;
+    margin-bottom: 5px;
+    transform: translateY(-5px);
+}
+#left-part #show-pword
+{
+    cursor: pointer;
+    width: 20px;
+    position: absolute;
+    right: 12px;
+    transform: translateY(-43px);
+    opacity: 0.3;
 }
 #left-part #pword-options
 {
